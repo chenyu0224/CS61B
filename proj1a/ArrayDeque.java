@@ -1,13 +1,13 @@
 
-public class ArrayDeque<Group> {
+public class ArrayDeque<T> {
 	private int size;
-	private Group[] items;
+	private T[] items;
 	private int nextFirst;
 	private int nextLast;
 	
 public ArrayDeque() {
 		size = 0;
-		items = (Group[]) new Object[8];
+		items = (T[]) new Object[8];
 		nextFirst = 0;
 		nextLast = 1;
 	}
@@ -60,7 +60,7 @@ public ArrayDeque() {
 	 * @param capacity
 	 */
 	private void resize(int capacity) {
-		Group[] a = (Group []) new Object[capacity];
+		T[] a = (T []) new Object[capacity];
 		int beforeindex = (nextFirst + 1) % items.length;
 		for (int i = 0; i < size; i++) {
 			a[i] = items[beforeindex];
@@ -72,10 +72,10 @@ public ArrayDeque() {
 	}
 	
 	/**
-	 * add Group x to the front of items
+	 * add T x to the front of items
 	 * @param x
 	 */
-	public void addFirst(Group x) {
+	public void addFirst(T x) {
 		
 		if (isFull()) {
 			resize(size * 2); //此时RFACTOR=0.5;
@@ -86,10 +86,10 @@ public ArrayDeque() {
 	}
 	
 	/**
-	 * add Group x to the last of the ArrayList
+	 * add T x to the last of the ArrayList
 	 * @param x
 	 */
-	public void addLast(Group x) {
+	public void addLast(T x) {
 		
 		if (isFull()) {
 			resize(size * 2); //此时RFACTOR=0.5;
@@ -103,12 +103,12 @@ public ArrayDeque() {
 	/**
 	 * remove the first one of the items
 	 */
-	public Group removeFirst() {
+	public T removeFirst() {
 		if (downR()) {
 			resize(items.length / 2);
 		}
 		nextFirst = plus(nextFirst);
-		Group returnItem = items[nextFirst];
+		T returnItem = items[nextFirst];
 		items[nextFirst] = null;
 		size -= 1;
 		return returnItem;
@@ -117,12 +117,12 @@ public ArrayDeque() {
 	/**
 	 * remove the last one of the items
 	 */
-	public Group removeLast() {
+	public T removeLast() {
 		if (downR()) {
 			resize(items.length / 2);
 		}
 		nextLast = minus(nextLast);
-		Group returnItem = items[nextLast];
+		T returnItem = items[nextLast];
 		items[nextLast] = null;
 		
 		if (isEmpty()) {
@@ -140,7 +140,7 @@ public ArrayDeque() {
 		return size;
 	}
 	
-	public Group get(int idex) {
+	public T get(int idex) {
 		for (int i = 0; i <= idex; i++) {
 			nextFirst = plus(nextFirst);
 		}
