@@ -71,10 +71,10 @@ public class LinkedListDeque<T> {
 		IntNode p = sentinel.next;
 	    	//不可以while(p.next!=null)
 		int k = size;
-		while(k!=0) {
-		System.out.print(p.item + " ");
-	    p = p.next;
-	    k -= 1;
+		while (k != 0) {
+		    System.out.print(p.item + " ");
+	        p = p.next;
+	        k -= 1;
 	    }
 		System.out.println();
 	    	
@@ -123,8 +123,8 @@ public class LinkedListDeque<T> {
 //	    		return null;
 //	    		}
 		while (index != 0) {
-	    		p = p.next;
-	    		index -= 1;
+			p = p.next;
+			index -= 1;
 	    }
 		return p.item;	
 	}
@@ -136,9 +136,9 @@ public class LinkedListDeque<T> {
 	     */
 	private T getRe (IntNode p, int index) {
 		if (index == 0) {
-	    		return p.item;
-	    }else {
-		return getRe(p.next, index-1);
+			return p.item;
+	    } else {
+	    	return getRe(p.next, index - 1);
 	    }
 	}
 	public T getRecursive (int index) {
