@@ -26,7 +26,7 @@ public class LinkedListDeque<T> {
 	    public LinkedListDeque() {
 	    	size = 0;
 	    	sentinel = new IntNode(null,null,null);
-	    	//Ö®Ç°Ö»Ğ´ÁË¶şÕßÏàµÈ£¡Ã»ÓĞĞ´µÈÓÚsentinel£¡£¡£¡
+	    	//ä¹‹å‰åªå†™äº†äºŒè€…ç›¸ç­‰ï¼æ²¡æœ‰å†™ç­‰äºsentinelï¼ï¼ï¼
 	    	sentinel.next = sentinel.prev = sentinel;
 	    	
 	    }
@@ -70,7 +70,7 @@ public class LinkedListDeque<T> {
 	     */
 	    public void printDeque() {
 	    	IntNode p = sentinel.next;
-	    	//²»¿ÉÒÔwhile(p.next!=null)
+	    	//ä¸å¯ä»¥while(p.next!=null)
 	    	int k = size;
 	    	while(k!=0) {
 	    		System.out.print(p.item+" ");
@@ -151,23 +151,5 @@ public class LinkedListDeque<T> {
 	    
  
 	  
-	    public static void main(String[] args) {
-			LinkedListDeque<Integer> l = new LinkedListDeque<>();
-			l.addFirst(5);
-			l.addLast(66);
-			l.addLast(98);
-			System.out.println(l.size);
-			l.printDeque();
-			System.out.println(l.get(1));
-			System.out.println(l.getRecursive(2));
-			l.removeLast();
-			System.out.println(l.size);
-			System.out.println(l.get(1));
-			l.printDeque();
-		
-//			l.removeLast();
-//			l.printDeque();
-//			System.out.println(l.isEmpty());
-			
-		}
+	  
 }
