@@ -110,7 +110,9 @@ public ArrayDeque() {
 		nextFirst = plus(nextFirst);
 		T returnItem = items[nextFirst];
 		items[nextFirst] = null;
-		size -= 1;
+		if (!isEmpty()) {
+			size -= 1;
+		}
 		return returnItem;
 	}
 	
@@ -125,7 +127,7 @@ public ArrayDeque() {
 		T returnItem = items[nextLast];
 		items[nextLast] = null;
 		
-		if (isEmpty()) {
+		if (!isEmpty()) {
 			size -= 1;
 		}
 		return returnItem;
