@@ -1,11 +1,11 @@
 
-public class ArrayDeque <Group>{
+public class ArrayDeque<Group> {
 	private int size;
 	private Group[] items;
 	private int nextFirst;
 	private int nextLast;
 	
-	public ArrayDeque() {
+public ArrayDeque() {
 		size = 0;
 		items = (Group[]) new Object[8];
 		nextFirst = 0;
@@ -33,7 +33,7 @@ public class ArrayDeque <Group>{
 	 * @return
 	 */
 	private boolean downR() {
-		return items.length >= 16 && (items.length > 4*size);
+		return items.length >= 16 && (items.length > 4 * size);
 	}
 	
 	/**
@@ -62,9 +62,9 @@ public class ArrayDeque <Group>{
 	private void resize(int capacity) {
 		Group[] a = (Group []) new Object[capacity];
 		int beforeindex = (nextFirst + 1) % items.length;
-		for( int i = 0; i< size; i++) {
+		for (int i = 0; i < size; i++) {
 			a[i] = items[beforeindex];
-			 beforeindex = plus(beforeindex);
+			beforeindex = plus(beforeindex);
 		}
 		items = a;
 		nextFirst = capacity - 1;
@@ -77,8 +77,8 @@ public class ArrayDeque <Group>{
 	 */
 	public void addFirst(Group x) {
 		
-		if(isFull()) {
-			resize(size*2);//此时RFACTOR=0.5;
+		if (isFull()) {
+			resize(size * 2); //姝ゆ椂RFACTOR=0.5;
 		}
 		items[nextFirst] = x;
 		nextFirst = minus(nextFirst);
@@ -91,8 +91,8 @@ public class ArrayDeque <Group>{
 	 */
 	public void addLast(Group x) {
 		
-		if(isFull()) {
-			resize(size*2);//此时RFACTOR=0.5;
+		if (isFull()) {
+			resize(size * 2); //姝ゆ椂RFACTOR=0.5;
 		}
 		items[nextLast] = x;
 		nextLast = plus(nextLast);
@@ -104,8 +104,8 @@ public class ArrayDeque <Group>{
 	 * remove the first one of the items
 	 */
 	public Group removeFirst() {
-		if(downR()) {
-			resize(items.length/2);
+		if (downR()) {
+			resize(items.length / 2);
 		}
 		nextFirst = plus(nextFirst);
 		Group returnItem = items[nextFirst];
@@ -118,14 +118,14 @@ public class ArrayDeque <Group>{
 	 * remove the last one of the items
 	 */
 	public Group removeLast() {
-		if(downR()) {
-			resize(items.length/2);
+		if (downR()) {
+			resize(items.length / 2);
 		}
 		nextLast = minus(nextLast);
 		Group returnItem = items[nextLast];
 		items[nextLast] = null;
 		
-		if(isEmpty()) {
+		if (isEmpty()) {
 			size -= 1;
 		}
 		return returnItem;
@@ -141,7 +141,7 @@ public class ArrayDeque <Group>{
 	}
 	
 	public Group get(int idex) {
-		for(int i = 0; i <= idex; i++ ) {
+		for (int i = 0; i <= idex; i++) {
 			nextFirst = plus(nextFirst);
 		}
 		return items[nextFirst];
@@ -151,11 +151,26 @@ public class ArrayDeque <Group>{
 	 * print the ArrayDeque
 	 */
 	public void printDeque() {
-		for(int i = plus(nextFirst); i != nextLast; i = plus(i)) {
-			System.out.print(items[i]+" ");
+		//not i < nextLast!!!
+		for (int i = plus(nextFirst); i != nextLast; i = plus(i)) {
+			System.out.print(items[i] + " ");
 		}
 		System.out.println();
 	}
 	
-	
+//	public static void main(String[] args) {
+//		ArrayDeque<Integer> items = new ArrayDeque<>();
+//		items.addFirst(5);
+//		items.addFirst(7);
+//		items.addLast(63);
+//		items.addLast(45);
+//		items.addLast(89);
+//		items.addLast(34);
+//		System.out.println(items.size);
+////		System.out.println(items.get(1));
+////		items.remove();
+//		items.printDeque();
+//		System.out.println(items.get(3));
+//		
+//	}
 }
