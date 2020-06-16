@@ -1,6 +1,6 @@
 
 public class LinkedListDeque<T> { 
-	/**
+    /**
      *  The first item (if it exists) in the deque is the sentinel.next
      */
     private IntNode sentinel;
@@ -12,39 +12,39 @@ public class LinkedListDeque<T> {
         private IntNode next;    
 	        
         public IntNode(IntNode p, T i, IntNode n) {
-	        	prev = p;
-	        	item = i;
-	        	next = n;
-	        }
-	        
-	        
-	    }
+        	prev = p;
+        	item = i;
+        	next = n;
+        }
+	
+        
+	}
 	    
 	    /**
 	     * Create an empty deque
 	     */
     public LinkedListDeque() {
     	size = 0;
-    	sentinel = new IntNode(null,null,null);
+    	sentinel = new IntNode(null, null, null);
 	    	//之前只写了二者相等！没有写等于sentinel！！！
     	sentinel.next = sentinel.prev = sentinel;
 	    	
-	    }
+	}
 	    
 	    /**
 	     * Add an item of type T to the front of the deque
 	     */
     public void addFirst(T item) {
-    	sentinel.next = new IntNode(sentinel,item,sentinel.next);
+    	sentinel.next = new IntNode(sentinel, item, sentinel.next);
     	sentinel.next.next.prev = sentinel.next;
     	size += 1;
-	    }
+	}
 	    
 	    /**
 	     * Add an item of type T to the back of the deque
 	     */
     public void addLast(T item) {
-    	sentinel.prev = new IntNode(sentinel.prev,item,sentinel);
+    	sentinel.prev = new IntNode(sentinel.prev, item, sentinel);
     	sentinel.prev.prev.next = sentinel.prev;
     	size += 1;
     }
@@ -61,24 +61,24 @@ public class LinkedListDeque<T> {
 	     */
 	public int size() {
 		return size;
-		}
+	}
 	    
 	    /**
 	     * Print the items in the deque from first to last, separated by a space
 	     * Once all the items have been printed, print out a new line
 	     */
 	public void printDeque() {
-	    	IntNode p = sentinel.next;
+		IntNode p = sentinel.next;
 	    	//不可以while(p.next!=null)
-	    	int k = size;
-	    	while(k!=0) {
-	    		System.out.print(p.item+" ");
-	    		p = p.next;
-	    		k -= 1;
-	    	}
-	    	System.out.println();
-	    	
+		int k = size;
+		while(k!=0) {
+		System.out.print(p.item + " ");
+	    p = p.next;
+	    k -= 1;
 	    }
+		System.out.println();
+	    	
+	}
 	    
 	    /**
 	     * Remove and return the item at the front of the deque
@@ -91,10 +91,10 @@ public class LinkedListDeque<T> {
 		p.next.prev = sentinel.next;
 		if (!isEmpty()) {
 	    	size -= 1;
-	        }
+		}
 		return p.item;	
 	    	
-	    }
+	}
 	    
 	    /**
 	     * Remove and return the item at the back of the deque
@@ -108,10 +108,10 @@ public class LinkedListDeque<T> {
 //	    	sentinel.prev.prev.next = sentinel;
 		if (!isEmpty()) {
 		    	size -= 1;
-		        }
+		}
 		return p.item;	
 	    
-	    }
+	}
 	    
 	    /**
 	     * Get the item at the given index, where 0 is the front,
@@ -126,26 +126,26 @@ public class LinkedListDeque<T> {
 		while (index != 0) {
 	    		p = p.next;
 	    		index -= 1;
-	    	}
+	    }
 		return p.item;	
 	    	
-	    }
+	}
 
 	    
 	    /**
 	     * Same as get, but uses recursion
 	     * First, need a private helper method
 	     */
-	private T getRe(IntNode p ,int index) {
+	private T getRe (IntNode p, int index) {
 		if (index == 0) {
 	    		return p.item;
-	    	}
+	    }
 		return getRe(p.next, index-1);
-	    }
-	public T getRecursive(int index) {
+	}
+	public T getRecursive (int index) {
 		IntNode p = sentinel.next;
-		return getRe(p,index);
-	    }
+		return getRe(p, index);
+	}
 	    
  
 	  
